@@ -64,10 +64,10 @@
         {
             if(!this.Contains(value))
                 return null;
-            var node = new ILinkedListNode<T>() { Previous = null, Next = this.First };
-            while(node.Next.Value != value)
-                node.Next = node.Next.Next;
-            return node.Next;
+            ILinkedListNode<T> node = this.First;
+            while(!node.Value.Equals(value))
+                node = node.Next;
+            return node;
         }
 
         public bool Remove(T value)

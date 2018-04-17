@@ -17,8 +17,8 @@ namespace GenericLinkedList.Test
         public void FindValueFoundNodeReturned()
         {
             var testList = new LinkedList<int>();
-            testList.AddFirst(5);
-            Assert.AreEqual(testList.First(), testList.Find(5));
+            testList.AddLast(5);
+            Assert.AreEqual(testList.Last, testList.Find(5));
         }
     }
 }

@@ -6,6 +6,5 @@
         public ILinkedListNode<T> Next { get; set; }
         public ILinkedListNode<T> Previous { get; set; }
         public T Value { get; set; }
-
     }
 }

@@ -4,16 +4,23 @@
     {
         public int Count { get; set; }
         public ILinkedListNode<T> First { get; set; }
-        public bool IsEmpty { get; }
+        public bool IsEmpty { get { return Last == null; }}
         public ILinkedListNode<T> Last { get; set; }
         public void AddFirst(T value)
         {
-            throw new System.NotImplementedException();
+           if (First == null)
+            {
+                First = new LinkedListNode<T> { Value = value };
+                Last = new LinkedListNode<T> { Value = value };
+            }
         }
-
         public void AddLast(T value)
         {
-            throw new System.NotImplementedException();
+            if (Last == null)
+            {
+                Last = new LinkedListNode<T> { Value = value };
+                First = new LinkedListNode<T> { Value = value };
+            }
         }
 
         public void Clear()
@@ -23,12 +30,44 @@
 
         public bool Contains(T value)
         {
-            throw new System.NotImplementedException();
+            if(IsEmpty == false)
+            {
+                if(First.Value.Equals(value))
+                {
+                    return true;
+                }
+                else if(Last.Value.Equals(value))
+                {
+                    return true;
+                }
+                else
+                {
+                    ILinkedListNode<T> temp = First;
+                    while(!temp.Value.Equals(value) && temp != Last)
+                    {
+                        temp = temp.Next;
+                    }
+                    if(temp == Last)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public ILinkedListNode<T> Find(T value)
         {
-            throw new System.NotImplementedException();
+            if(!this.Contains(value))
+                return null;
+            var node = new ILinkedListNode<T>() { Previous = null, Next = this.First };
+            while(node.Next.Value != value)
+                node.Next = node.Next.Next;
+            return node.Next;
         }
 
         public bool Remove(T value)

@@ -1,4 +1,4 @@
-﻿namespace DataStructures
+﻿    namespace DataStructures
 {
     public class LinkedList<T> : ILinkedList<T>
     {
@@ -8,32 +8,60 @@
         public ILinkedListNode<T> Last { get; set; }
         public void AddFirst(T value)
         {
-           if (IsEmpty)
+            ILinkedListNode<T> newNode = new LinkedListNode<T>{Value = value};
+            if (Last == null)
             {
-                First = new LinkedListNode<T> { Value = value, Previous = null, Next = null };
-                Last = First;
+                First = Last = newNode;
+                newNode.Previous = null;
+                newNode.Next = null;
                 Count++;
             }
+
+            else if (First == Last)
+            {
+                First.Previous = newNode;
+                newNode.Previous = null;
+                newNode.Next = First;
+                First = newNode;
+                Last = newNode.Next;
+                Count++;
+            }
+
             else
             {
-                var newNode = new LinkedListNode<T> { Value = value, Previous = null, Next = First };
                 First.Previous = newNode;
+                newNode.Next = First;
+                newNode.Previous = null;
                 First = newNode;
                 Count++;
             }
         }
+
         public void AddLast(T value)
         {
-            if (IsEmpty)
+            ILinkedListNode<T> newNode = new LinkedListNode<T> { Value = value };
+            if (Last == null)
             {
-                Last = new LinkedListNode<T> { Value = value, Previous = null, Next = null };
-                First = Last;
+                First = Last = newNode;
+                newNode.Previous = null;
+                newNode.Next = null;
                 Count++;
             }
+
+            else if (First == Last)
+            {
+                newNode.Previous = Last;
+                newNode.Next = null;
+                Last.Next = newNode;
+                Last = newNode;
+                Count++;
+            }
+
             else
             {
-                var newNode = new LinkedListNode<T> { Value = value, Previous = Last, Next = null };
                 Last.Next = newNode;
+                newNode.Previous = Last;
+                newNode.Next = null;
                 Last = newNode;
                 Count++;
             }
@@ -41,7 +69,15 @@
 
         public void Clear()
         {
-            throw new System.NotImplementedException();
+            ILinkedListNode<T> deleteNode = First;
+            while (deleteNode != null)
+            {
+                ILinkedListNode<T> nextNode = deleteNode.Next;
+                deleteNode = null;
+                deleteNode = nextNode;
+                Count--;
+            }
+            First = Last = null;
         }
 
         public bool Contains(T value)
@@ -88,31 +124,8 @@
 
         public bool Remove(T value)
         {
-            if (!Contains(value))
-                return false;
-            ILinkedListNode<T> node = Find(value);
-            if (node.Previous == null && node.Next == null) // only element
-            {
-                First = Last = null;
-            }
-            else if (node.Previous == null) // first element
-            {
-                node.Next.Previous = null;
-                First = node.Next;
-            }
-            else if (node.Next == null) // last element
-            {
-                Last.Previous.Next = null;
-                Last = Last.Previous;
-            }
-            else // middle
-            {
-                node.Previous.Next = node.Next;
-                node.Next.Previous = node.Previous;
-            }
-            node = null;
-            Count--;
-            return true;
+            throw new System.NotImplementedException();
         }
+
     }
 }

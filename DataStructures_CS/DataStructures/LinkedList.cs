@@ -8,18 +8,34 @@
         public ILinkedListNode<T> Last { get; set; }
         public void AddFirst(T value)
         {
-           if (First == null)
+           if (IsEmpty)
             {
-                First = new LinkedListNode<T> { Value = value };
-                Last = new LinkedListNode<T> { Value = value };
+                First = new LinkedListNode<T> { Value = value, Previous = null, Next = null };
+                Last = First;
+                Count++;
+            }
+            else
+            {
+                var newNode = new LinkedListNode<T> { Value = value, Previous = null, Next = First };
+                First.Previous = newNode;
+                First = newNode;
+                Count++;
             }
         }
         public void AddLast(T value)
         {
-            if (Last == null)
+            if (IsEmpty)
             {
-                Last = new LinkedListNode<T> { Value = value };
-                First = new LinkedListNode<T> { Value = value };
+                Last = new LinkedListNode<T> { Value = value, Previous = null, Next = null };
+                First = Last;
+                Count++;
+            }
+            else
+            {
+                var newNode = new LinkedListNode<T> { Value = value, Previous = Last, Next = null };
+                Last.Next = newNode;
+                Last = newNode;
+                Count++;
             }
         }
 
@@ -72,8 +88,31 @@
 
         public bool Remove(T value)
         {
-            throw new System.NotImplementedException();
+            if (!Contains(value))
+                return false;
+            ILinkedListNode<T> node = Find(value);
+            if (node.Previous == null && node.Next == null) // only element
+            {
+                First = Last = null;
+            }
+            else if (node.Previous == null) // first element
+            {
+                node.Next.Previous = null;
+                First = node.Next;
+            }
+            else if (node.Next == null) // last element
+            {
+                Last.Previous.Next = null;
+                Last = Last.Previous;
+            }
+            else // middle
+            {
+                node.Previous.Next = node.Next;
+                node.Next.Previous = node.Previous;
+            }
+            node = null;
+            Count--;
+            return true;
         }
-
     }
 }

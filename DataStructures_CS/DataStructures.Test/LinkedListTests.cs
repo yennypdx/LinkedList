@@ -1,6 +1,5 @@
 ﻿using DataStructures;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataStructures;
 
 namespace GenericLinkedList.Test
 {
@@ -23,13 +22,34 @@ namespace GenericLinkedList.Test
         }
 
         [TestMethod]
-        public void FindStringFoundNodeReturned()
+        public void FindStringFoundNodeReturnedLast()
         {
             var testList = new LinkedList<string>();
             testList.AddLast("This ");
             testList.AddLast("is a ");
             testList.AddLast("test.");
             Assert.AreEqual(testList.Last, testList.Find("test."));
+        }
+
+        [TestMethod]
+        public void FindStringFoundNodeReturnedFirst()
+        {
+            var testList = new LinkedList<string>();
+            testList.AddLast("This ");
+            testList.AddLast("is a ");
+            testList.AddLast("test.");
+            Assert.AreEqual(testList.First, testList.Find("This "));
+        }
+
+        [TestMethod]
+        public void FindStringFoundNodeReturnedMiddle()
+        {
+            var testList = new LinkedList<string>();
+            testList.AddLast("This ");
+            testList.AddLast("is a ");
+            testList.AddLast("test.");
+            ILinkedListNode<string> middleNode = testList.Find("is a ");
+            Assert.AreEqual(middleNode.Value, "is a ");
         }
 
         [TestMethod]
@@ -238,13 +258,13 @@ namespace GenericLinkedList.Test
 
         [TestMethod]
         public void TestRemovingFirstElementOnTheList()
-        { 
+        {
             ILinkedList<int> testList = new LinkedList<int>();
             testList.AddLast(4);
             testList.AddLast(3);
             testList.AddLast(2);
             testList.AddLast(1);
-            
+
             testList.Remove(4);
             Assert.IsTrue(testList.Count == 3);
             Assert.IsTrue(testList.First.Value == 3);
@@ -290,5 +310,64 @@ namespace GenericLinkedList.Test
             Assert.IsTrue(testList.Count == 4);
             Assert.IsFalse(testList.Contains(5));
         }
-    }
+
+        public void LinkedListContainsFirstTest()
+        {
+            LinkedList<int> atest = new LinkedList<int>();
+
+            atest.AddFirst(52);
+
+            Assert.IsTrue(atest.Contains(52));
+        }
+        [TestMethod]
+        public void LinkedListContainsLastTest()
+        {
+            LinkedList<int> atest = new LinkedList<int>();
+
+            atest.AddLast(52);
+
+            Assert.IsTrue(atest.Contains(52));
+        }
+        [TestMethod]
+        public void LinkedListContainsTest()
+        {
+            LinkedList<int> atest = new LinkedList<int>();
+
+            atest.AddFirst(52);
+            atest.AddFirst(53);
+            atest.AddFirst(54);
+            //Needs AddFirst Fully Implemented
+            Assert.IsTrue(atest.Contains(53));
+        }
+        [TestMethod]
+        public void LinkedListContainerEmptyTest()
+        {
+            //try
+            //{
+            //    LinkedList<int> atest = new LinkedList<int>();
+
+            //    Assert.IsTrue(atest.Contains(52));
+            //}
+            //catch() Unsure what to catch
+            //{
+
+            //}
+        }
+        [TestMethod]
+        public void LinkedListContainerValueNotThereTest()
+        {
+            //try
+            //{
+            //    LinkedList<int> atest = new LinkedList<int>();
+
+            //    atest.AddFirst(53);
+
+            //    Assert.IsTrue(atest.Contains(52));
+            //}
+            //catch() Unsure what to catch
+            //{
+
+            //}
+        }
+    };
 }

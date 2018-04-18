@@ -50,11 +50,10 @@
 
             else if (First == Last)
             {
-                First.Previous = newNode;
-                newNode.Previous = First;
+                newNode.Previous = Last;
                 newNode.Next = null;
+                Last.Next = newNode;
                 Last = newNode;
-                First = newNode.Previous;
                 Count++;
             }
 

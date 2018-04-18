@@ -17,6 +17,9 @@ namespace GenericLinkedList.Test
         [TestMethod]
         public void FindValueFoundNodeReturned()
         {
+            var testList = new LinkedList<int>();
+            testList.AddLast(5);
+            Assert.AreEqual(testList.Last, testList.Find(5));
         }
 
         [TestMethod]
@@ -90,6 +93,79 @@ namespace GenericLinkedList.Test
             emptyList.AddFirst("ahuja");
             emptyList.AddFirst("singh");
             Assert.AreEqual("shant", emptyList.Last.Value);
+        }
+
+        [TestMethod]
+        public void AddLastTestEmptyList()
+        {
+            ILinkedList<string> emptyList = new LinkedList<string>();
+            emptyList.AddLast("shant");
+            Assert.AreEqual("shant", emptyList.Last.Value);
+        }
+
+        [TestMethod]
+        public void AddLastTestEmptyListCheckCount()
+        {
+            ILinkedList<string> emptyList = new LinkedList<string>();
+            emptyList.AddLast("shant");
+            Assert.AreEqual(1, emptyList.Count);
+        }
+
+        [TestMethod]
+        public void AddLastTestOneNodeListCheckFirst()
+        {
+            ILinkedList<string> emptyList = new LinkedList<string>();
+            emptyList.AddLast("shant");
+            emptyList.AddLast("ahuja");
+            Assert.AreEqual("shant", emptyList.First.Value);
+        }
+
+        [TestMethod]
+        public void AddLastTestOneNodeListCheckCount()
+        {
+            ILinkedList<string> emptyList = new LinkedList<string>();
+            emptyList.AddLast("shant");
+            emptyList.AddLast("ahuja");
+            Assert.AreEqual(2, emptyList.Count);
+        }
+
+        [TestMethod]
+        public void AddLastTestOneNodeListCheckLast()
+        {
+            ILinkedList<string> emptyList = new LinkedList<string>();
+            emptyList.AddLast("shant");
+            emptyList.AddLast("ahuja");
+            Assert.AreEqual("ahuja", emptyList.Last.Value);
+        }
+
+        [TestMethod]
+        public void AddLastTestTwoOrMoreNodesListCheckFirst()
+        {
+            ILinkedList<string> emptyList = new LinkedList<string>();
+            emptyList.AddLast("shant");
+            emptyList.AddLast("ahuja");
+            emptyList.AddLast("singh");
+            Assert.AreEqual("shant", emptyList.First.Value);
+        }
+
+        [TestMethod]
+        public void AddLastTestTwoOrMoreNodesListCheckCount()
+        {
+            ILinkedList<string> emptyList = new LinkedList<string>();
+            emptyList.AddLast("shant");
+            emptyList.AddLast("ahuja");
+            emptyList.AddLast("singh");
+            Assert.AreEqual(3, emptyList.Count);
+        }
+
+        [TestMethod]
+        public void AddLastTestTwoOrMoreNodesListCheckLast()
+        {
+            ILinkedList<string> emptyList = new LinkedList<string>();
+            emptyList.AddLast("shant");
+            emptyList.AddLast("ahuja");
+            emptyList.AddLast("singh");
+            Assert.AreEqual("singh", emptyList.Last.Value);
         }
 
         [TestMethod]

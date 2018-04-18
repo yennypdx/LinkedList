@@ -39,10 +39,32 @@
 
         public void AddLast(T value)
         {
+            ILinkedListNode<T> newNode = new LinkedListNode<T> { Value = value };
             if (Last == null)
             {
-                Last = new LinkedListNode<T> { Value = value };
-                First = new LinkedListNode<T> { Value = value };
+                First = Last = newNode;
+                newNode.Previous = null;
+                newNode.Next = null;
+                Count++;
+            }
+
+            else if (First == Last)
+            {
+                First.Previous = newNode;
+                newNode.Previous = First;
+                newNode.Next = null;
+                Last = newNode;
+                First = newNode.Previous;
+                Count++;
+            }
+
+            else
+            {
+                Last.Next = newNode;
+                newNode.Previous = Last;
+                newNode.Next = null;
+                Last = newNode;
+                Count++;
             }
         }
 

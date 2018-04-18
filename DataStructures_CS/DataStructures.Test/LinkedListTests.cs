@@ -211,7 +211,7 @@ namespace GenericLinkedList.Test
         {
             ILinkedList<string> emptyList = new LinkedList<string>();
             emptyList.Clear();
-            Assert.AreEqual(0,emptyList.Count);
+            Assert.AreEqual(0, emptyList.Count);
         }
 
         [TestMethod]
@@ -227,7 +227,6 @@ namespace GenericLinkedList.Test
 
         [TestMethod]
         public void ClearTestNodesInListCheckCount()
-        public void TestRemovingFirstElementOnTheList()
         {
             ILinkedList<string> emptyList = new LinkedList<string>();
             emptyList.AddFirst("shant");
@@ -235,7 +234,12 @@ namespace GenericLinkedList.Test
             emptyList.AddFirst("singh");
             emptyList.Clear();
             Assert.AreEqual(0, emptyList.Count);
-            LinkedList<int> testList = new LinkedList<int>();
+        }
+
+        [TestMethod]
+        public void TestRemovingFirstElementOnTheList()
+        { 
+            ILinkedList<int> testList = new LinkedList<int>();
             testList.AddLast(4);
             testList.AddLast(3);
             testList.AddLast(2);
@@ -249,7 +253,7 @@ namespace GenericLinkedList.Test
         [TestMethod]
         public void TestRemovingLastElementOnTheList()
         {
-            LinkedList<int> testList = new LinkedList<int>();
+            ILinkedList<int> testList = new LinkedList<int>();
             testList.AddLast(4);
             testList.AddLast(3);
             testList.AddLast(2);
@@ -260,16 +264,31 @@ namespace GenericLinkedList.Test
             Assert.IsTrue(testList.Last.Value == 2);
         }
 
-        //[TestMethod]
-        //public void TestRemovingElementInBetweenElementsOnTheList()
-        //{
-        //    throw new System.NotImplementedException();
-        //}
+        [TestMethod]
+        public void TestRemovingElementInBetweenElementsOnTheList()
+        {
+            ILinkedList<int> testList = new LinkedList<int>();
+            testList.AddLast(4);
+            testList.AddLast(3);
+            testList.AddLast(2);
+            testList.AddLast(1);
 
-        //[TestMethod]
-        //public void TestRemovingElementNotInTheList()
-        //{
-        //    throw new System.NotImplementedException();
-        //}
+            testList.Remove(2);
+            Assert.IsTrue(testList.Count == 3);
+        }
+
+        [TestMethod]
+        public void TestRemovingElementNotInTheList()
+        {
+            ILinkedList<int> testList = new LinkedList<int>();
+            testList.AddLast(4);
+            testList.AddLast(3);
+            testList.AddLast(2);
+            testList.AddLast(1);
+
+            testList.Remove(5);
+            Assert.IsTrue(testList.Count == 4);
+            Assert.IsFalse(testList.Contains(5));
+        }
     }
 }

@@ -266,7 +266,6 @@ namespace GenericLinkedList.Test
             testList.AddLast(1);
 
             testList.Remove(4);
-            Assert.IsTrue(testList.Count == 3);
             Assert.IsTrue(testList.First.Value == 3);
         }
 
@@ -280,7 +279,6 @@ namespace GenericLinkedList.Test
             testList.AddLast(1);
 
             testList.Remove(1);
-            Assert.IsTrue(testList.Count == 3);
             Assert.IsTrue(testList.Last.Value == 2);
         }
 
@@ -307,7 +305,6 @@ namespace GenericLinkedList.Test
             testList.AddLast(1);
 
             testList.Remove(5);
-            Assert.IsTrue(testList.Count == 4);
             Assert.IsFalse(testList.Contains(5));
         }
 

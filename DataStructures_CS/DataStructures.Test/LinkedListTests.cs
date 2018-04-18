@@ -23,6 +23,36 @@ namespace GenericLinkedList.Test
         }
 
         [TestMethod]
+        public void FindStringFoundNodeReturned()
+        {
+            var testList = new LinkedList<string>();
+            testList.AddLast("This ");
+            testList.AddLast("is a ");
+            testList.AddLast("test.");
+            Assert.AreEqual(testList.Last, testList.Find("test."));
+        }
+
+        [TestMethod]
+        public void FindValueNotFound()
+        {
+            var testList = new LinkedList<int>();
+            testList.AddLast(4);
+            testList.AddLast(8);
+            testList.AddLast(5);
+            Assert.IsNull(testList.Find(9));
+        }
+
+        [TestMethod]
+        public void FindStringNotFound()
+        {
+            var testList = new LinkedList<string>();
+            testList.AddLast("This ");
+            testList.AddLast("is a ");
+            testList.AddLast("test.");
+            Assert.IsNull(testList.Find("not there"));
+        }
+
+        [TestMethod]
         public void AddFirstTestEmptyList()
         {
             ILinkedList<string> emptyList = new LinkedList<string>();

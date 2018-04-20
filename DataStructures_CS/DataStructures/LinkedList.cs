@@ -56,7 +56,8 @@
 
         public bool Contains(T value)
         {
-            if(IsEmpty == false)
+            //Swap IsEmpty with First.List.IsEmpty when other stuff is implemented
+            if (IsEmpty == false)
             {
                 if(First.Value.Equals(value))
                 {

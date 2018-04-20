@@ -73,7 +73,7 @@
                     {
                         temp = temp.Next;
                     }
-                    if(temp == Last)
+                    if (temp == Last)
                     {
                         return false;
                     }

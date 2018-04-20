@@ -351,14 +351,14 @@ namespace GenericLinkedList.Test
             testList.Remove("john");
             Assert.IsFalse(testList.Contains("john"));
         }
-
+        [TestMethod]
         public void LinkedListContainsFirstTest()
         {
             LinkedList<int> atest = new LinkedList<int>();
             atest.AddFirst(52);
             Assert.IsTrue(atest.Contains(52));
         }
-
+        [TestMethod]
         public void LinkedListContainsFirstTestString()
         {
             LinkedList<string> atest = new LinkedList<string>();

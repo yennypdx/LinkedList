@@ -9,30 +9,16 @@
 
         public void AddFirst(T value)
         {
-            ILinkedListNode<T> newNode = new LinkedListNode<T>{Value = value};
-            if (Last == null)
+            if (IsEmpty)
             {
-                First = Last = newNode;
-                newNode.Previous = null;
-                newNode.Next = null;
+                First = new LinkedListNode<T> { Value = value, Previous = null, Next = null };
+                Last = First;
                 Count++;
             }
-
-            else if (First == Last)
-            {
-                First.Previous = newNode;
-                newNode.Previous = null;
-                newNode.Next = First;
-                First = newNode;
-                Last = newNode.Next;
-                Count++;
-            }
-
             else
             {
+                var newNode = new LinkedListNode<T> { Value = value, Previous = null, Next = First };
                 First.Previous = newNode;
-                newNode.Next = First;
-                newNode.Previous = null;
                 First = newNode;
                 Count++;
             }
@@ -40,29 +26,16 @@
 
         public void AddLast(T value)
         {
-            ILinkedListNode<T> newNode = new LinkedListNode<T> { Value = value };
-            if (Last == null)
+            if (IsEmpty)
             {
-                First = Last = newNode;
-                newNode.Previous = null;
-                newNode.Next = null;
+                Last = new LinkedListNode<T> { Value = value, Previous = null, Next = null };
+                First = Last;
                 Count++;
             }
-
-            else if (First == Last)
-            {
-                newNode.Previous = Last;
-                newNode.Next = null;
-                Last.Next = newNode;
-                Last = newNode;
-                Count++;
-            }
-
             else
             {
+                var newNode = new LinkedListNode<T> { Value = value, Previous = Last, Next = null };
                 Last.Next = newNode;
-                newNode.Previous = Last;
-                newNode.Next = null;
                 Last = newNode;
                 Count++;
             }
@@ -123,31 +96,35 @@
             return node;
         }
 
-        public bool Remove(T value) 
+        public bool Remove(T value)
         {
-            if (this.Contains(value)) {
+            if (this.Contains(value))
+            {
                 ILinkedListNode<T> currentNode = Find(value);
 
                 //Node is the only item
-                if (First == Last) {
+                if (First == Last)
+                {
                     First = null;
                     Last = null;
                 }
-                else {
+                else
+                {
                     //Node is the first node
-                    if (currentNode.Previous == null) {
+                    if (currentNode.Previous == null)
+                    {
                         First = First.Next;
                         First.Previous = null;
                         First.Next = null;
                     }
-                    //Node is the last node
-                    if (currentNode.Next == null) {
+                    else if (currentNode.Next == null)  //Node is the last node
+                    {
                         Last = Last.Previous;
                         Last.Previous = null;
                         Last.Next = null;
                     }
-                    //Node in the middle of two nodes
-                    if (currentNode.Next == null && currentNode.Previous == null) {
+                    else
+                    {  //Node in the middle of two nodes
                         currentNode.Previous.Next = currentNode.Next;
                         currentNode.Next.Previous = currentNode.Previous;
                         currentNode = null;
@@ -156,9 +133,11 @@
                 Count--;
                 return true;
             }
-            else {
+            else
+            {
                 return false;
             }
         }
     }
+
 }

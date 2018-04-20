@@ -38,32 +38,18 @@ namespace GenericLinkedList.Test
         [TestMethod]
         public void LinkedListContainerEmptyTest()
         {
-            //try
-            //{
-            //    LinkedList<int> atest = new LinkedList<int>();
+            LinkedList<int> atest = new LinkedList<int>();
 
-            //    Assert.IsTrue(atest.Contains(52));
-            //}
-            //catch() Unsure what to catch
-            //{
-
-            //}
+            Assert.IsFalse(atest.Contains(52));
         }
         [TestMethod]
         public void LinkedListContainerValueNotThereTest()
         {
-            //try
-            //{
-            //    LinkedList<int> atest = new LinkedList<int>();
-
-            //    atest.AddFirst(53);
-
-            //    Assert.IsTrue(atest.Contains(52));
-            //}
-            //catch() Unsure what to catch
-            //{
-
-            //}
+            LinkedList<int> atest = new LinkedList<int>();
+        
+            atest.AddFirst(53);
+        
+            Assert.IsFalse(atest.Contains(52));
         }
     }
 }

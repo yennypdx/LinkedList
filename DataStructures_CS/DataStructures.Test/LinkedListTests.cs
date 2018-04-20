@@ -264,7 +264,6 @@ namespace GenericLinkedList.Test
             testList.AddLast(3);
             testList.AddLast(2);
             testList.AddLast(1);
-
             testList.Remove(4);
             Assert.IsTrue(testList.First.Value == 3);
         }
@@ -277,7 +276,6 @@ namespace GenericLinkedList.Test
             testList.AddLast(3);
             testList.AddLast(2);
             testList.AddLast(1);
-
             testList.Remove(1);
             Assert.IsTrue(testList.Last.Value == 2);
         }
@@ -290,7 +288,6 @@ namespace GenericLinkedList.Test
             testList.AddLast(3);
             testList.AddLast(2);
             testList.AddLast(1);
-
             testList.Remove(2);
             Assert.IsTrue(testList.Count == 3);
         }
@@ -303,11 +300,10 @@ namespace GenericLinkedList.Test
             testList.AddLast(3);
             testList.AddLast(2);
             testList.AddLast(1);
-
             testList.Remove(5);
             Assert.IsFalse(testList.Contains(5));
         }
-
+        [TestMethod]
         public void LinkedListContainsFirstTest()
         {
             LinkedList<int> atest = new LinkedList<int>();
@@ -339,32 +335,15 @@ namespace GenericLinkedList.Test
         [TestMethod]
         public void LinkedListContainerEmptyTest()
         {
-            //try
-            //{
-            //    LinkedList<int> atest = new LinkedList<int>();
-
-            //    Assert.IsTrue(atest.Contains(52));
-            //}
-            //catch() Unsure what to catch
-            //{
-
-            //}
+            var testList = new LinkedList<string>();
+            Assert.IsFalse(testList.Contains("something"));
         }
         [TestMethod]
         public void LinkedListContainerValueNotThereTest()
         {
-            //try
-            //{
-            //    LinkedList<int> atest = new LinkedList<int>();
-
-            //    atest.AddFirst(53);
-
-            //    Assert.IsTrue(atest.Contains(52));
-            //}
-            //catch() Unsure what to catch
-            //{
-
-            //}
+            var testList = new LinkedList<string>();
+            testList.AddFirst("something");
+            Assert.IsFalse(testList.Contains("nothing"));
         }
     };
 }

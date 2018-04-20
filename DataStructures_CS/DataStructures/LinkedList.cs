@@ -7,32 +7,18 @@
         public bool IsEmpty { get { return Last == null; }}
         public ILinkedListNode<T> Last { get; set; }
 
-        public void AddFirst(T value)
+        public void AddFirst(T value)              
         {
-            ILinkedListNode<T> newNode = new LinkedListNode<T>{Value = value};
-            if (Last == null)
+            if (IsEmpty)
             {
-                First = Last = newNode;
-                newNode.Previous = null;
-                newNode.Next = null;
+                First = new LinkedListNode<T> { Value = value, Previous = null, Next = null };
+                Last = First;
                 Count++;
             }
-
-            else if (First == Last)
-            {
-                First.Previous = newNode;
-                newNode.Previous = null;
-                newNode.Next = First;
-                First = newNode;
-                Last = newNode.Next;
-                Count++;
-            }
-
             else
             {
+                var newNode = new LinkedListNode<T> { Value = value, Previous = null, Next = First };
                 First.Previous = newNode;
-                newNode.Next = First;
-                newNode.Previous = null;
                 First = newNode;
                 Count++;
             }
@@ -40,29 +26,16 @@
 
         public void AddLast(T value)
         {
-            ILinkedListNode<T> newNode = new LinkedListNode<T> { Value = value };
-            if (Last == null)
+            if(IsEmpty)
             {
-                First = Last = newNode;
-                newNode.Previous = null;
-                newNode.Next = null;
+                Last = new LinkedListNode<T> { Value = value, Previous = null, Next = null };
+                First = Last;
                 Count++;
             }
-
-            else if (First == Last)
-            {
-                newNode.Previous = Last;
-                newNode.Next = null;
-                Last.Next = newNode;
-                Last = newNode;
-                Count++;
-            }
-
             else
             {
+                var newNode = new LinkedListNode<T> { Value = value, Previous = Last, Next = null };
                 Last.Next = newNode;
-                newNode.Previous = Last;
-                newNode.Next = null;
                 Last = newNode;
                 Count++;
             }

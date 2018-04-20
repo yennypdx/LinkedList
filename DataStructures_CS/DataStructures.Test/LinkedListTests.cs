@@ -269,6 +269,18 @@ namespace GenericLinkedList.Test
         }
 
         [TestMethod]
+        public void TestRemovingFirstElementOnTheListStrings()
+        {
+            ILinkedList<string> testList = new LinkedList<string>();
+            testList.AddLast("shant");
+            testList.AddLast("yenny");
+            testList.AddLast("nick");
+            testList.AddLast("rachel");
+            testList.Remove("shant");
+            Assert.IsTrue(testList.First.Value == "yenny");
+        }
+
+        [TestMethod]
         public void TestRemovingLastElementOnTheList()
         {
             ILinkedList<int> testList = new LinkedList<int>();
@@ -278,6 +290,18 @@ namespace GenericLinkedList.Test
             testList.AddLast(1);
             testList.Remove(1);
             Assert.IsTrue(testList.Last.Value == 2);
+        }
+
+        [TestMethod]
+        public void TestRemovingLastElementOnTheListStrings()
+        {
+            ILinkedList<string> testList = new LinkedList<string>();
+            testList.AddLast("shant");
+            testList.AddLast("yenny");
+            testList.AddLast("nick");
+            testList.AddLast("rachel");
+            testList.Remove("rachel");
+            Assert.IsTrue(testList.Last.Value == "nick");
         }
 
         [TestMethod]
@@ -293,6 +317,18 @@ namespace GenericLinkedList.Test
         }
 
         [TestMethod]
+        public void TestRemovingElementInBetweenElementsOnTheListStrings()
+        {
+            ILinkedList<string> testList = new LinkedList<string>();
+            testList.AddLast("shant");
+            testList.AddLast("yenny");
+            testList.AddLast("nick");
+            testList.AddLast("rachel");
+            testList.Remove("nick");
+            Assert.IsFalse(testList.Contains("nick"));
+        }
+
+        [TestMethod]
         public void TestRemovingElementNotInTheList()
         {
             ILinkedList<int> testList = new LinkedList<int>();
@@ -303,41 +339,76 @@ namespace GenericLinkedList.Test
             testList.Remove(5);
             Assert.IsFalse(testList.Contains(5));
         }
+
         [TestMethod]
+        public void TestRemovingElementNotInTheListString()
+        {
+            ILinkedList<string> testList = new LinkedList<string>();
+            testList.AddLast("shant");
+            testList.AddLast("yenny");
+            testList.AddLast("nick");
+            testList.AddLast("rachel");
+            testList.Remove("john");
+            Assert.IsFalse(testList.Contains("john"));
+        }
+
         public void LinkedListContainsFirstTest()
         {
             LinkedList<int> atest = new LinkedList<int>();
-
             atest.AddFirst(52);
-
             Assert.IsTrue(atest.Contains(52));
         }
+
+        public void LinkedListContainsFirstTestString()
+        {
+            LinkedList<string> atest = new LinkedList<string>();
+            atest.AddFirst("shant");
+            Assert.IsTrue(atest.Contains("shant"));
+        }
+
         [TestMethod]
         public void LinkedListContainsLastTest()
         {
             LinkedList<int> atest = new LinkedList<int>();
-
             atest.AddLast(52);
-
             Assert.IsTrue(atest.Contains(52));
         }
+
+        [TestMethod]
+        public void LinkedListContainsLastTestString()
+        {
+            LinkedList<string> atest = new LinkedList<string>();
+            atest.AddLast("shant");
+            Assert.IsTrue(atest.Contains("shant"));
+        }
+
         [TestMethod]
         public void LinkedListContainsTest()
         {
             LinkedList<int> atest = new LinkedList<int>();
-
             atest.AddFirst(52);
             atest.AddFirst(53);
             atest.AddFirst(54);
-            //Needs AddFirst Fully Implemented
             Assert.IsTrue(atest.Contains(53));
         }
+
+        [TestMethod]
+        public void LinkedListContainsTestString()
+        {
+            LinkedList<string> atest = new LinkedList<string>();
+            atest.AddFirst("shant");
+            atest.AddFirst("ahuja");
+            atest.AddFirst("singh");
+            Assert.IsTrue(atest.Contains("ahuja"));
+        }
+
         [TestMethod]
         public void LinkedListContainerEmptyTest()
         {
             var testList = new LinkedList<string>();
             Assert.IsFalse(testList.Contains("something"));
         }
+
         [TestMethod]
         public void LinkedListContainerValueNotThereTest()
         {

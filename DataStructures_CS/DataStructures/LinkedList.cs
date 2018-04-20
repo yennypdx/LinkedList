@@ -7,7 +7,7 @@
         public bool IsEmpty { get { return Last == null; }}
         public ILinkedListNode<T> Last { get; set; }
 
-        public void AddFirst(T value)              
+        public void AddFirst(T value)
         {
             if (IsEmpty)
             {
@@ -26,7 +26,7 @@
 
         public void AddLast(T value)
         {
-            if(IsEmpty)
+            if (IsEmpty)
             {
                 Last = new LinkedListNode<T> { Value = value, Previous = null, Next = null };
                 First = Last;
@@ -96,31 +96,35 @@
             return node;
         }
 
-        public bool Remove(T value) 
+        public bool Remove(T value)
         {
-            if (this.Contains(value)) {
+            if (this.Contains(value))
+            {
                 ILinkedListNode<T> currentNode = Find(value);
 
                 //Node is the only item
-                if (First == Last) {
+                if (First == Last)
+                {
                     First = null;
                     Last = null;
                 }
-                else {
+                else
+                {
                     //Node is the first node
-                    if (currentNode.Previous == null) {
+                    if (currentNode.Previous == null)
+                    {
                         First = First.Next;
                         First.Previous = null;
                         First.Next = null;
                     }
-                    //Node is the last node
-                    if (currentNode.Next == null) {
+                    else if (currentNode.Next == null)  //Node is the last node
+                    {
                         Last = Last.Previous;
                         Last.Previous = null;
                         Last.Next = null;
                     }
-                    //Node in the middle of two nodes
-                    if (currentNode.Next == null && currentNode.Previous == null) {
+                    else
+                    {  //Node in the middle of two nodes
                         currentNode.Previous.Next = currentNode.Next;
                         currentNode.Next.Previous = currentNode.Previous;
                         currentNode = null;
@@ -129,9 +133,11 @@
                 Count--;
                 return true;
             }
-            else {
+            else
+            {
                 return false;
             }
         }
     }
+
 }

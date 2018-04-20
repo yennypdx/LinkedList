@@ -352,6 +352,7 @@ namespace GenericLinkedList.Test
             Assert.IsFalse(testList.Contains("john"));
         }
 
+        [TestMethod]
         public void LinkedListContainsFirstTest()
         {
             LinkedList<int> atest = new LinkedList<int>();
@@ -359,6 +360,7 @@ namespace GenericLinkedList.Test
             Assert.IsTrue(atest.Contains(52));
         }
 
+        [TestMethod]
         public void LinkedListContainsFirstTestString()
         {
             LinkedList<string> atest = new LinkedList<string>();
